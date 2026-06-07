@@ -1,0 +1,15 @@
+# Auto-detect text files
+* text=auto
+
+# Force LF for shell scripts (broken if CRLF on Linux/Mac)
+*.sh text eol=lf
+
+# Force CRLF for PowerShell (Windows-only anyway)
+*.ps1 text eol=crlf
+
+# Treat as binary
+*.docx binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary

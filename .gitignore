@@ -1,0 +1,25 @@
+# Generated DOCX outputs
+*.docx
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# User-specific (never commit)
+.env
+.env.local
+*.local.md
