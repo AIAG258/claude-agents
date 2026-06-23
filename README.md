@@ -23,7 +23,7 @@ rd-agents-setup/
     ├── AGENTS_REGISTRY.md      ← Offline registry (full team overview)
     ├── TECH_STACK.md           ← Canonical stack (referenced by all agents)
     ├── HANDOFF_PROTOCOL.md     ← File-based handoff via specs/
-    └── PRE_IMPLEMENTATION_CHECKLIST.md  ← 5 questions for engineers
+    └── PRE_IMPLEMENTATION_CHECKLIST.md  ← 6 questions for engineers
 ```
 
 ---
@@ -126,6 +126,7 @@ Auto-loaded from `~/.claude/rules/` every session:
 | `security.md` | OWASP, no hardcoded secrets, parameterized queries, privacy compliance |
 | `stack-compliance.md` | Canonical stack (LiteLLM, Provider Abstraction, error format, CSS variable design system); hosting/DB free choice, core framework via ADR |
 | `workflow-discipline.md` | Task ownership, gates + fast-path, executive verification (reviewer runs build; tester runs smoke), run isolation, fix loop, evidence-only |
+| `execution-fidelity.md` | Faithful execution: surface assumptions, simplicity-first (YAGNI), surgical changes (refactor-exempt), step→verify plan, no scope creep. Enforced by code-reviewer §7 |
 | `accessibility-i18n.md` | WCAG 2.1 AA, react-i18next (English default) |
 | `self-improvement.md` | Journal during work → harvest into lessons; read lessons before starting |
 | `learned-patterns.md` | Cross-project memory loaded every session (durable lessons for your domain) |

@@ -37,7 +37,7 @@ When the project has a `specs/` directory, you MUST read these before writing co
 
 For ad-hoc work (no `specs/` directory, no task entry), proceed based on the user's handoff message and complete normally.
 
-Also read **`docs/PRE_IMPLEMENTATION_CHECKLIST.md`** before writing code — 5 questions about contract, framework validation, state persistence, acceptance criteria precedence, and undocumented validation paths.
+Also read **`docs/PRE_IMPLEMENTATION_CHECKLIST.md`** before writing code — 6 questions: restate goal & surface assumptions + plan verify steps (Q0), plus contract, framework validation, state persistence, acceptance criteria precedence, and undocumented validation paths.
 
 ---
 
@@ -109,6 +109,7 @@ Instead, use **explicit manual validation** in the route handler body and return
 - **Read mandatory specs/ artifacts** (see above) when the project has `specs/`.
 - **Read relevant existing code** to understand context, patterns, and dependencies.
 - **Plan your approach** for non-trivial tasks: files, components, data flow.
+- **Plan with verify steps** for non-trivial tasks: map each step to an acceptance criterion and how you'll confirm it; implement only what the criteria require — no speculative scope (`rules/execution-fidelity.md`).
 
 ### While Writing Code
 - Write clean, idiomatic code for the language/framework in use.

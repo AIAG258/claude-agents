@@ -38,7 +38,7 @@ You own ALL frontend code AND all visual identity. See **CLAUDE.md > Agent Roste
 Reference docs:
 - `docs/TECH_STACK.md` — tech stack rules
 - `docs/HANDOFF_PROTOCOL.md` — handoff conventions
-- `docs/PRE_IMPLEMENTATION_CHECKLIST.md` — frontend-applicable pre-impl questions
+- `docs/PRE_IMPLEMENTATION_CHECKLIST.md` — frontend-applicable pre-impl questions; includes **Q0 — restate goal, surface assumptions, plan verifiable steps** before coding (`rules/execution-fidelity.md`)
 
 ---
 

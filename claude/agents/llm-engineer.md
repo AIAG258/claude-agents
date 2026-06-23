@@ -126,6 +126,7 @@ Never claim completion based on "should work", "looks correct", or "logically va
 3. `specs/features/<feature-name>.md` — acceptance criteria for AI behaviour (if exists)
 4. `specs/codebase-analysis.md` (if exists)
 5. `specs/tasks/implementation-tasks.json` — filter `"agent": "llm-engineer"`
+6. `docs/PRE_IMPLEMENTATION_CHECKLIST.md` — answer **Q0 (restate goal, surface assumptions, plan verify steps)** and the contract/spec questions before writing code (`rules/execution-fidelity.md`)
 
 ### Output
 - `backend/app/providers/llm/` — LiteLLM implementations

@@ -8,6 +8,9 @@ Engineers answer these questions **before writing code** for each task. The goal
 
 ## Checklist
 
+### 0. Have I restated the goal, surfaced assumptions, and planned verifiable steps?
+Restate the task in one line against the acceptance criteria in `specs/features/<feature>.md`. If anything is ambiguous, **state the assumption explicitly** — do not silently resolve it; a contract or data-shape ambiguity goes to **software-architect** first. For non-trivial tasks, write a short step→verify plan (each step maps to an acceptance criterion + how you'll confirm it) and implement only what the criteria require — no speculative scope. See `rules/execution-fidelity.md`.
+
 ### 1. Which error codes does the contract define for my endpoint?
 Read `specs/contracts/api-contracts.yaml` — list every error code and HTTP status in the 4xx/5xx responses section for your endpoint. Your implementation must return these exact codes and shapes.
 

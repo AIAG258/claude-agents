@@ -94,6 +94,7 @@ Never claim completion based on "migration generated" alone. Migrations not appl
 2. `specs/contracts/api-contracts.yaml` (if your tables feed API endpoints)
 3. `specs/codebase-analysis.md` (if exists)
 4. `specs/tasks/implementation-tasks.json` — filter `"agent": "data-engineer"`
+5. `docs/PRE_IMPLEMENTATION_CHECKLIST.md` — answer **Q0 (restate goal, surface assumptions, plan verify steps)** and the contract/spec questions before writing code (`rules/execution-fidelity.md`)
 
 ### Output
 - `backend/alembic/versions/<timestamp>_<description>.py` — Alembic migrations (forward + downgrade)

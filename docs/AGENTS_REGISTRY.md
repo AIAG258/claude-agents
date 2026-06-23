@@ -97,6 +97,7 @@ Location: `{{CLAUDE_HOME}}\rules\<name>.md`. Auto-loaded into every session.
 | **security.md** | OWASP Top 10, no hardcoded secrets, parameterized queries, AuthFactory pattern, AES-256-GCM for secrets at rest, privacy compliance, never `verify=False` |
 | **stack-compliance.md** | Canonical stack (FastAPI/Python 3.12/SQLAlchemy 2.0 async, React 18/TS strict/Zustand/TanStack, LiteLLM mandatory, Provider Abstraction, error format, CSS variable design system) |
 | **workflow-discipline.md** | Task ownership (software-architect = sole owner of implementation-tasks.json), gates + fast-path carve-out, review-before-QA, executive verification (reviewer runs lint/typecheck/build; tester runs e2e smoke), run isolation, fix loop max 1 cycle, evidence-only |
+| **execution-fidelity.md** | Think-before-coding (restate goal, surface assumptions, no silent guesses), Simplicity-First/YAGNI, Surgical Changes (Pattern 4/refactor + cleanup exempt), Goal-Driven step→verify plan. Enforced by code-reviewer §7 Scope & Simplicity. |
 | **accessibility-i18n.md** | WCAG 2.1 AA, keyboard nav, ARIA, color contrast, semantic HTML, react-i18next (English default) |
 | **self-improvement.md** | Journal-during-work (`specs/journal.md`), read `specs/lessons.md` before starting; two-tier memory (project auto, global on approval) |
 | **learned-patterns.md** | Cross-project memory — durable lessons for the user's domain, loaded every session. Written only via approved harvest. |
@@ -135,7 +136,7 @@ These documents are not deployed to `~/.claude/` — they stay in the repo and a
 | **AGENTS_REGISTRY.md** | `docs/AGENTS_REGISTRY.md` | This file — full team overview |
 | **TECH_STACK.md** | `docs/TECH_STACK.md` | Authoritative canonical stack (Backend, LLM Gateway, Auth, Cache, Storage, Vector, Frontend, Design System, Infrastructure, Monorepo) |
 | **HANDOFF_PROTOCOL.md** | `docs/HANDOFF_PROTOCOL.md` | How agents communicate through the `specs/` directory. Validation rules, dependency graph, 4-phase workflow, gate procedures (Gate 0/A/B), contract-first protocol |
-| **PRE_IMPLEMENTATION_CHECKLIST.md** | `docs/PRE_IMPLEMENTATION_CHECKLIST.md` | 5 questions engineers answer before writing code + adjacency checklist |
+| **PRE_IMPLEMENTATION_CHECKLIST.md** | `docs/PRE_IMPLEMENTATION_CHECKLIST.md` | 6 questions engineers answer before writing code (Q0 restate-goal/surface-assumptions/plan + 5 contract/spec questions) + adjacency checklist |
 
 ---
 

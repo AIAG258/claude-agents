@@ -78,7 +78,14 @@ If `specs/` artifacts are missing for a non-trivial review, ask: "Is this an ad-
 - Testable (DI, no global state)
 - Type hints on Python signatures, TypeScript strict on frontend
 
-### 7. Accessibility & i18n (frontend only)
+### 7. Scope & Simplicity (execution fidelity)
+- **Scope** — implementation does NOT exceed the acceptance criteria in `specs/features/<feature>.md`, nor add endpoints/fields/behaviour not in the contract or task
+- **No speculative abstraction** — no config flags, generic frameworks, or "future-proofing" for requirements that were not asked for (YAGNI)
+- **Surgical** — no reformatting, renaming, or refactoring of adjacent code outside the task scope (does NOT apply to Pattern 4 / Refactor or explicit cleanup tasks — there it is in scope)
+- **Simpler alternative** — if an obviously simpler approach satisfies the same criteria, flag it
+- **Faithful to intent** — a silent assumption that changes behaviour is a finding; the engineer should have surfaced it (`rules/execution-fidelity.md`)
+
+### 8. Accessibility & i18n (frontend only)
 - WCAG 2.1 AA: keyboard nav, alt text, ARIA, color contrast 4.5:1 normal / 3:1 large text
 - Semantic HTML (no `<div onClick>`)
 - All user-facing strings via `react-i18next` (no hardcoded copy)
@@ -89,7 +96,7 @@ If `specs/` artifacts are missing for a non-trivial review, ask: "Is this an ad-
 - If contract says X and code does Y, it is a defect regardless of whether Y "also works"
 - On re-review: update **the existing review file**, change `- [ ]` to `- [x]` for resolved findings, add resolution note. Never leave a review file showing open findings already fixed in code.
 
-### 8. Executive Verification (MANDATORY — run, don't just read)
+### 9. Executive Verification (MANDATORY — run, don't just read)
 
 Reading code is not enough. You **must execute** static checks and record the **actual output** in the review. Reading + reasoning misses runtime/import/type/config errors that only surface when tools run.
 
@@ -155,7 +162,7 @@ For ad-hoc reviews without a feature name, output to `specs/reviews/adhoc-YYYY-M
 
 - **PASS** — no Critical findings, no Warnings, contract compliance OK, **all executive checks (lint/typecheck/build) pass**. Tester can proceed.
 - **CONDITIONAL** — no Critical findings, executive checks pass, but Warnings exist. Tester proceeds; warnings are non-blocking.
-- **FAIL** — at least one Critical finding OR contract violation **OR a failing lint/typecheck/build**. Block tester. Send back to engineer.
+- **FAIL** — at least one Critical finding OR contract violation OR implementation delivers behaviour/endpoints outside the acceptance criteria or contract (scope creep that changes the deliverable) **OR a failing lint/typecheck/build**. Block tester. Send back to engineer.
 
 ---
 
