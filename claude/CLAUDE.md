@@ -1,8 +1,8 @@
-# AI R&D Squad — Agent Team Manifest
+# KPM Technologies AI R&D Squad — Agent Team Manifest
 
 ## Team Identity
 
-**AI R&D Squad**. Customize this section with your team name, contact, and lead.
+**KPM Technologies AI R&D Squad** — the internal AI research & development team at **KPM Technologies**. We are this squad. Contact: _<team contact — TODO>_. Lead: _<team lead — TODO>_.
 
 ## Language Policy
 
@@ -15,6 +15,15 @@ FastAPI/Python 3.12+, React 18/TS/Vite/Zustand/TanStack, LiteLLM (mandatory gate
 ---
 
 ## Agent Roster & Delegation Matrix
+
+### Phase 0 — Discovery (idea → de-risked brief, before spec)
+
+| Agent | Domain | When to Invoke |
+|-------|--------|----------------|
+| **solution-strategist** | Adversarial thinking partner. Stress-tests a raw idea on two lenses — domain immersion (the real worker's shoes) + AI/system failure modes. Runs **interactively in the main thread**, not spawned. Phase 0 step 1. | Fuzzy/high-stakes ideas before any spec; front of `/startprocess` |
+| **prior-art-scout** | Researches public solutions as reference — patterns to adopt AND mistakes the authors missed; mandatory license check. Spawned subagent. Phase 0 step 2. | Before software-architect, when existing solutions likely exist; also useful in refactors |
+
+> Both Phase 0 agents are **available in all patterns** as an optional step (teamlead decides per task). They are mandatory at the front of `/startprocess`. solution-strategist is skipped for pure bug fixes (the idea already exists).
 
 ### Core Workflow Agents
 
@@ -46,26 +55,30 @@ FastAPI/Python 3.12+, React 18/TS/Vite/Zustand/TanStack, LiteLLM (mandatory gate
 ### Delegation Rules
 
 1. **teamlead** orchestrates — invoke first for complex multi-step projects; it selects pattern and routes
-2. **software-architect** advises structure; **developer** + **frontend-engineer** implement
-3. **frontend-engineer** owns ALL frontend styling AND React — developer defers; covers both dark and light theme variants
-4. **llm-engineer** owns `providers/llm/`, `providers/vector/`, `services/ai/` — runs BEFORE developer in Pattern 2
-5. **data-engineer** owns OLAP schemas and ETL — developer owns OLTP only
-6. **code-reviewer** runs after ANY implementation, before tester
-7. **tester** only receives `"reviewed"` status (PASS or CONDITIONAL); never FAIL
-8. **codebase-intelligence** is mandatory first step in Pattern 3 (bug fix) and Pattern 4 (refactor)
-9. **docs-writer** after any significant feature completed
-10. Git ops (push/pull/PR/branch on GitHub) → **github-sync skill** (plan-then-confirm)
-11. When in doubt → ask user or invoke **teamlead**
+2. **solution-strategist** runs **interactively in the main thread** (never spawned as a subagent) — de-risks the idea before BA; skipped for pure bug fixes
+3. **prior-art-scout** runs after solution-strategist, before software-architect — researches existing solutions + their unforeseen mistakes; **always license-checks** before recommending
+4. **software-architect** advises structure; **developer** + **frontend-engineer** implement
+5. **frontend-engineer** owns ALL frontend styling AND React — developer defers; covers both dark and light theme variants
+6. **llm-engineer** owns `providers/llm/`, `providers/vector/`, `services/ai/` — runs BEFORE developer in Pattern 2
+7. **data-engineer** owns OLAP schemas and ETL — developer owns OLTP only
+8. **code-reviewer** runs after ANY implementation, before tester
+9. **tester** only receives `"reviewed"` status (PASS or CONDITIONAL); never FAIL
+10. **codebase-intelligence** is mandatory first step in Pattern 3 (bug fix) and Pattern 4 (refactor)
+11. **docs-writer** after any significant feature completed
+12. Git ops (push/pull/PR/branch on GitHub) → **github-sync skill** (plan-then-confirm)
+13. When in doubt → ask user or invoke **teamlead**
 
 ---
 
-## Workflow Patterns — 3 Phases, 2 Gates
+## Workflow Patterns — 4 Phases, 3 Gates
 
 > Protocol: `docs/HANDOFF_PROTOCOL.md`. Pre-flight: `docs/PRE_IMPLEMENTATION_CHECKLIST.md`.
 
-**Pattern 1 — New Feature:** `business-analyst → software-architect → 🛑 Gate A → developer + frontend-engineer → code-reviewer → tester → 🛑 Gate B → deploy`
+**Phase 0 — Discovery (optional per pattern, mandatory in `/startprocess`):** `solution-strategist (main thread, interactive) → prior-art-scout → 🛑 Gate 0`
 
-**Pattern 2 — AI Feature:** `business-analyst → software-architect → 🛑 Gate A → llm-engineer → developer + frontend-engineer → code-reviewer → tester → 🛑 Gate B → deploy`
+**Pattern 1 — New Feature:** `[Phase 0 → 🛑 Gate 0] → business-analyst → software-architect → 🛑 Gate A → developer + frontend-engineer → code-reviewer → tester → 🛑 Gate B → deploy`
+
+**Pattern 2 — AI Feature:** `[Phase 0 → 🛑 Gate 0] → business-analyst → software-architect → 🛑 Gate A → llm-engineer → developer + frontend-engineer → code-reviewer → tester → 🛑 Gate B → deploy`
 
 **Pattern 3 — Bug Fix:** `codebase-intelligence → [engineer] → code-reviewer → tester`
 
@@ -85,6 +98,10 @@ FastAPI/Python 3.12+, React 18/TS/Vite/Zustand/TanStack, LiteLLM (mandatory gate
 
 | File | Owner | Purpose |
 |---|---|---|
+| `specs/strategy/discovery-brief.md` | solution-strategist | Clarified, de-risked idea (Phase 0) — BA's main input |
+| `specs/strategy/risk-analysis.md` | solution-strategist | Risk-per-row (scenario → failure → blast radius → mitigation → open question) |
+| `specs/strategy/prior-art.md` | prior-art-scout | Existing solutions: patterns to adopt + authors' mistakes + license verdicts |
+| `specs/strategy/discovery-summary.md` | teamlead | Gate 0 dossier consolidating Phase 0 findings |
 | `specs/prd.md` + `specs/features/*.md` | business-analyst | PRD with Given/When/Then |
 | `specs/architecture.md` | software-architect | Architecture, DB design, handoff notes per agent |
 | `specs/contracts/api-contracts.yaml` | software-architect | OpenAPI 3.1 single source of truth |

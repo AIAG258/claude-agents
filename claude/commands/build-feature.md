@@ -1,4 +1,4 @@
-Build the planned feature using the AI R&D Squad 3-phase workflow (Phase 2 — Build).
+Build the planned feature using the KPM Technologies AI R&D Squad workflow (Phase 2 — Build).
 
 ## Prerequisites
 

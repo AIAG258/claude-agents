@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI R&D Squad — setup for Linux/macOS
+# KPM Technologies AI R&D Squad — setup for Linux/macOS
 # Deploys agent/skill/CLAUDE.md from repo to ~/.claude/
 
 set -euo pipefail
@@ -14,7 +14,7 @@ if [[ ! -d "$SOURCE" ]]; then
 fi
 
 echo ""
-echo "=== AI R&D Squad — Setup ==="
+echo "=== KPM Technologies AI R&D Squad — Setup ==="
 echo "Repo (SQUAD_HOME):    $SQUAD_HOME"
 echo "Target (CLAUDE_HOME): $CLAUDE_HOME"
 echo ""

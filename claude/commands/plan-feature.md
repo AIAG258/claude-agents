@@ -1,4 +1,6 @@
-Plan a new feature using the AI R&D Squad 3-phase workflow (Phase 1 — Spec).
+Plan a new feature using the KPM Technologies AI R&D Squad workflow (Phase 1 — Spec).
+
+> **Tip:** For a raw, un-vetted idea, run **`/startprocess`** instead — it adds Phase 0 (solution-strategist discovery + prior-art-scout) and Gate 0 in front of this. If `specs/strategy/discovery-brief.md` already exists, business-analyst should read it as primary input.
 
 ## What to do
 

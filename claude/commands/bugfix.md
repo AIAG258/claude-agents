@@ -1,4 +1,4 @@
-Fix a bug using the AI R&D Squad bug fix workflow (Pattern 3).
+Fix a bug using the KPM Technologies AI R&D Squad bug fix workflow (Pattern 3).
 
 ## What to do
 

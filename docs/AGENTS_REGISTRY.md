@@ -1,4 +1,4 @@
-# AI R&D Squad — Agents, Commands, Rules & Tools Registry
+# KPM Technologies AI R&D Squad — Agents, Commands, Rules & Tools Registry
 
 > Offline reference for the team. **Not loaded into Claude Code context** — feel free to be detailed.
 
@@ -11,6 +11,13 @@
 ---
 
 ## Agents
+
+### Phase 0 — Discovery (idea → de-risked brief)
+
+| Agent | Color | Domain | Model |
+|-------|-------|--------|-------|
+| **solution-strategist** | amber | Adversarial thinking partner. Two lenses: domain immersion (the real worker's shoes) + AI/system failure modes. **Runs interactively in the main thread — never spawned.** Phase 0 step 1. | opus |
+| **prior-art-scout** | violet | Researches public solutions — patterns to adopt AND mistakes the authors missed; mandatory license check. Spawned subagent. Phase 0 step 2. | opus |
 
 ### Core Workflow Agents (Phases 1–2)
 
@@ -39,20 +46,22 @@
 | **docs-writer** | pink | Technical documentation in Markdown (technical docs, user guides, READMEs, ADRs) | sonnet |
 | **squad-configurator** | white | Dual-mode: CREATE (new agents/skills/tools) + AUDIT (review existing) | inherit |
 
-**Total agents: 12**
+**Total agents: 14**
 
 ### Delegation Rules
 
 1. **teamlead** is the orchestrator — invoke first for complex tasks; selects pattern and routes
-2. **software-architect** advises structure; **developer** + **frontend-engineer** implement
-3. **developer** handles backend implementation including auth
-4. **frontend-engineer** owns ALL frontend styling + React implementation; covers both dark and light themes
-5. **llm-engineer** owns `backend/app/providers/llm/`, `providers/vector/`, `services/ai/`; runs BEFORE developer in Pattern 2
-6. **data-engineer** owns OLAP schemas and ETL; developer owns OLTP only
-7. **code-reviewer** runs AFTER any significant code change, before tester
-8. **tester** receives only `"reviewed"` status (PASS/CONDITIONAL); never FAIL
-9. **codebase-intelligence** mandatory first step in Pattern 3 (bug fix) and Pattern 4 (refactor)
-10. **docs-writer** runs AFTER a feature is complete
+2. **solution-strategist** runs **interactively in the main thread** (never spawned) — de-risks a raw idea before BA; skipped for pure bug fixes
+3. **prior-art-scout** runs after solution-strategist, before software-architect — existing solutions + authors' unforeseen mistakes; **always license-checks** before recommending
+4. **software-architect** advises structure; **developer** + **frontend-engineer** implement
+5. **developer** handles backend implementation including auth
+6. **frontend-engineer** owns ALL frontend styling + React implementation; covers both dark and light themes
+7. **llm-engineer** owns `backend/app/providers/llm/`, `providers/vector/`, `services/ai/`; runs BEFORE developer in Pattern 2
+8. **data-engineer** owns OLAP schemas and ETL; developer owns OLTP only
+9. **code-reviewer** runs AFTER any significant code change, before tester
+10. **tester** receives only `"reviewed"` status (PASS/CONDITIONAL); never FAIL
+11. **codebase-intelligence** mandatory first step in Pattern 3 (bug fix) and Pattern 4 (refactor)
+12. **docs-writer** runs AFTER a feature is complete
 
 ---
 
@@ -62,6 +71,7 @@ Location: `{{CLAUDE_HOME}}\commands\<name>.md`. Auto-loaded into every session.
 
 | Command | Pattern | What it does |
 |---------|---------|-------------|
+| `/startprocess <idea>` | Full lifecycle | Phase 0 (solution-strategist in **main thread**, interactive → prior-art-scout subagent) → 🛑 Gate 0 → Phase 1 (BA → architect) → 🛑 Gate A → Phase 2 (engineers parallel → review → test) → 🛑 Gate B → optional ship. All human interaction front-loaded into discovery. |
 | `/spike <question>` | Spike | developer/specialist → minimal throwaway POC → findings report. No contract, no gates. For feasibility unknowns before planning. |
 | `/plan-feature <description>` | Phase 1 | business-analyst (**Lean Mode** by default: PRD 1-5 + acceptance; Full Mode on request) → software-architect (architecture, contract, task breakdown, deployment requirements, ADRs) → Gate A |
 | `/build-feature [context]` | Phase 2 | [llm-engineer if AI] → developer + frontend-engineer (parallel) → code-reviewer (**executes** lint/typecheck/build, fix loop) → tester (**+ e2e smoke test**) → Gate B → memory harvest |
@@ -124,7 +134,7 @@ These documents are not deployed to `~/.claude/` — they stay in the repo and a
 |----------|------|----------|
 | **AGENTS_REGISTRY.md** | `docs/AGENTS_REGISTRY.md` | This file — full team overview |
 | **TECH_STACK.md** | `docs/TECH_STACK.md` | Authoritative canonical stack (Backend, LLM Gateway, Auth, Cache, Storage, Vector, Frontend, Design System, Infrastructure, Monorepo) |
-| **HANDOFF_PROTOCOL.md** | `docs/HANDOFF_PROTOCOL.md` | How agents communicate through the `specs/` directory. Validation rules, dependency graph, 3-phase workflow, gate procedures, contract-first protocol |
+| **HANDOFF_PROTOCOL.md** | `docs/HANDOFF_PROTOCOL.md` | How agents communicate through the `specs/` directory. Validation rules, dependency graph, 4-phase workflow, gate procedures (Gate 0/A/B), contract-first protocol |
 | **PRE_IMPLEMENTATION_CHECKLIST.md** | `docs/PRE_IMPLEMENTATION_CHECKLIST.md` | 5 questions engineers answer before writing code + adjacency checklist |
 
 ---

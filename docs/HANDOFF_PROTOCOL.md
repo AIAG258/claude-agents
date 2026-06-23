@@ -1,4 +1,4 @@
-# AI R&D Squad — Handoff Protocol
+# KPM Technologies AI R&D Squad — Handoff Protocol
 
 > Defines how agents communicate via the `specs/` directory.
 > All agents that read/write spec files must follow this protocol.
@@ -32,6 +32,9 @@ When an agent completes work and writes output:
 ## Dependency Graph
 
 ```
+specs/strategy/discovery-brief.md + risk-analysis.md (solution-strategist, MAIN thread)
+  → specs/strategy/prior-art.md (prior-art-scout, subagent)
+  → specs/strategy/discovery-summary.md (teamlead) → 🛑 GATE 0
 specs/prd.md (business-analyst)
   → specs/features/*.md (business-analyst)
   → specs/architecture.md (software-architect)
@@ -55,7 +58,17 @@ Cross-cutting files (not phase-gated):
 
 ---
 
-## 3-Phase Development Workflow
+## 4-Phase Development Workflow
+
+### Phase 0 — Discovery & Prior Art (front of `/startprocess`; optional elsewhere)
+```
+solution-strategist (MAIN thread, interactive) → prior-art-scout (subagent) → 🛑 HUMAN APPROVAL GATE 0
+```
+- **solution-strategist** runs **in the main thread** (interactive dialogue — a spawned subagent cannot converse). Outputs: `specs/strategy/discovery-brief.md`, `specs/strategy/risk-analysis.md`
+- **prior-art-scout** is **spawned as a subagent**. Outputs: `specs/strategy/prior-art.md` (patterns + authors' mistakes + license check)
+- **Batched-question escalation:** downstream subagents that lack a critical fact return grouped questions to the main thread instead of guessing; teamlead relays, collects answers, re-invokes.
+
+**Gate 0:** **teamlead** consolidates Phase 0 into `specs/strategy/discovery-summary.md` and presents idea + top risks + prior-art adopt/avoid + open questions. Asks user to continue, revise, or stop. solution-strategist is skipped for pure bug fixes.
 
 ### Phase 1 — Spec
 ```
@@ -96,10 +109,11 @@ No separate approval gate — deployment decision made at Gate B.
 
 ## Human Approval Checkpoints
 
-**teamlead** must STOP at these **2 mandatory gates** for Pattern 1 (New Feature) and Pattern 2 (AI Feature):
+**teamlead** must STOP at these gates for Pattern 1 (New Feature) and Pattern 2 (AI Feature). **Gate 0** applies whenever Phase 0 runs (always via `/startprocess`); **Gate A** and **Gate B** are always mandatory:
 
 | Gate | When | What teamlead presents | User options |
 |---|---|---|---|
+| **0** | After Phase 0 (if run) | Idea summary, top 3 risks, prior-art adopt/avoid + licensing, open questions (`specs/strategy/discovery-summary.md`) | Continue / Revise / Stop |
 | **A** | After Phase 1 | PRD summary (3-5 bullets), architecture decisions, API contract shape, ADRs (if any), theme decision | Continue / Revise / Stop |
 | **B** | After Phase 2 | Implementation summary, code review findings, QA results (numbers required), open issues, risks | Deploy / Revise / Stop |
 
@@ -136,6 +150,12 @@ For trivial tasks within Pattern 1/2 (≤3 files, no new endpoints, no DB schema
 
 ## Agent Activation by Pattern
 
+### Phase 0 — Discovery (mandatory via `/startprocess`, optional elsewhere)
+| Agent | Trigger |
+|---|---|
+| **solution-strategist** | Fuzzy/high-stakes idea before spec — runs in the **main thread**, interactive. Skipped for pure bug fixes. |
+| **prior-art-scout** | After solution-strategist, before software-architect — spawned subagent; also useful in refactors. |
+
 ### Required in Pattern 3 (Bug Fix) & Pattern 4 (Refactor)
 | Agent | Trigger |
 |---|---|
@@ -159,6 +179,11 @@ For trivial tasks within Pattern 1/2 (≤3 files, no new endpoints, no DB schema
 
 ```
 specs/
+├── strategy/                       # Phase 0 (solution-strategist + prior-art-scout + teamlead)
+│   ├── discovery-brief.md          # solution-strategist
+│   ├── risk-analysis.md            # solution-strategist
+│   ├── prior-art.md                # prior-art-scout
+│   └── discovery-summary.md        # teamlead (Gate 0 dossier)
 ├── prd.md                          # business-analyst
 ├── lean-canvas.md                  # business-analyst (optional, early-stage)
 ├── uat-criteria.md                 # business-analyst (optional, pre-launch)

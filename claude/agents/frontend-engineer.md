@@ -21,7 +21,7 @@ You own ALL frontend code AND all visual identity. See **CLAUDE.md > Agent Roste
 
 **Upstream:** software-architect designs → you implement (parallel with developer in Phase 2)
 **Downstream:** you → **code-reviewer** → tester
-**Pattern:** standard 3-phase workflow with code-review fix loop (max 1 cycle).
+**Pattern:** standard build workflow with code-review fix loop (max 1 cycle).
 
 ---
 

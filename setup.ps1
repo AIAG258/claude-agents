@@ -1,6 +1,6 @@
-<#
+﻿<#
 .SYNOPSIS
-    Deploys AI R&D Squad agent/skill/CLAUDE.md from repo to ~/.claude/.
+    Deploys KPM Technologies AI R&D Squad agent/skill/CLAUDE.md from repo to ~/.claude/.
 
 .DESCRIPTION
     Reads source files from $PSScriptRoot/claude/ and copies them to $env:USERPROFILE/.claude/
@@ -41,7 +41,7 @@ if (-not (Test-Path $Source)) {
 }
 
 Write-Host ""
-Write-Host "=== AI R&D Squad — Setup ===" -ForegroundColor Cyan
+Write-Host "=== KPM Technologies AI R&D Squad — Setup ===" -ForegroundColor Cyan
 Write-Host "Repo (SQUAD_HOME):    $SquadHome"
 Write-Host "Target (CLAUDE_HOME): $ClaudeHome"
 Write-Host ""

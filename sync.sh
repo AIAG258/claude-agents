@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI R&D Squad — sync (git pull + setup) for Linux/macOS
+# KPM Technologies AI R&D Squad — sync (git pull + setup) for Linux/macOS
 
 set -euo pipefail
 

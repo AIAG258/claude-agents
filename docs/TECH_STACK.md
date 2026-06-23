@@ -1,4 +1,4 @@
-# AI R&D Squad — Canonical Tech Stack
+# KPM Technologies AI R&D Squad — Canonical Tech Stack
 
 > **Authoritative source** for the canonical tech stack.
 > All agents reference this file. Do not duplicate this content in agent prompts.

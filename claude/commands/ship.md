@@ -1,4 +1,4 @@
-Prepare for deployment using the AI R&D Squad workflow (Phase 3 — Ship). Manual shortcut — teamlead runs this logic automatically after Gate B "Deploy".
+Prepare for deployment using the KPM Technologies AI R&D Squad workflow (Phase 3 — Ship). Manual shortcut — teamlead runs this logic automatically after Gate B "Deploy".
 
 ## Prerequisites
 

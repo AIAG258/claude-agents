@@ -1,4 +1,4 @@
-Refactor existing code using the AI R&D Squad refactor workflow (Pattern 4).
+Refactor existing code using the KPM Technologies AI R&D Squad refactor workflow (Pattern 4).
 
 ## What to do
 

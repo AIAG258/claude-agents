@@ -1,4 +1,4 @@
-# AI R&D Squad — Claude Code Configuration
+# KPM Technologies AI R&D Squad — Claude Code Configuration
 
 A portable, team-shareable Claude Code agent/skill/tool setup for software engineering squads.
 
@@ -63,11 +63,18 @@ flowchart LR
 
 ### 2. Agent Roster — who does what
 
-#### Core workflow (3 phases, 2 gates)
+#### Discovery (Phase 0 — optional per pattern, mandatory via `/startprocess`)
 
 | Agent | Domain | Phase |
 |-------|--------|-------|
-| **teamlead** | orchestration, pattern selection (1–4), Gate A/B enforcement | all |
+| **solution-strategist** | adversarial thinking partner — domain immersion + AI/system failure modes; **runs interactively in the main thread, not spawned** | Phase 0 step 1 |
+| **prior-art-scout** | researches public solutions — patterns to adopt + authors' unforeseen mistakes; mandatory license check | Phase 0 step 2 |
+
+#### Core workflow (4 phases, 3 gates)
+
+| Agent | Domain | Phase |
+|-------|--------|-------|
+| **teamlead** | orchestration, pattern selection, Gate 0/A/B enforcement | all |
 | **business-analyst** | Lean Canvas, UAT, value scoring + PRD with Given/When/Then | Phase 1 step 1 |
 | **software-architect** | system design, API contracts (OpenAPI 3.1), task breakdown, ADRs (sole owner of `implementation-tasks.json`) | Phase 1 step 2 |
 | **developer** | implementation (Python/FastAPI primary, multi-language) | Phase 2 |
